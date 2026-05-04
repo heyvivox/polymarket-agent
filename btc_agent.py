@@ -1,3 +1,4 @@
+from typing import Optional
 """
 BTC 5-Minute Auto-Trading Bot v2.1 — Real Polymarket Logic
 Multi-user CLI edition: credentials stored encrypted per-user at ~/.polymarket_bot/
@@ -602,7 +603,7 @@ def fetch_window_open(w_ts):
         log(f"[ERROR] Window open: {e}")
         return None
 
-def fetch_live_polymarket_ask(token_id: str, executor_obj) -> float | None:
+def fetch_live_polymarket_ask(token_id: str, executor_obj) -> Optional[float]:
     """
     Return the real-time best CLOB ask price for a token, or None if unavailable.
     Uses the executor's get_orderbook() so it reads the live Polymarket CLOB —
