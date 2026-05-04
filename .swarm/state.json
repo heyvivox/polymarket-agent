@@ -1,0 +1,29 @@
+{
+  "swarmId": "swarm-mogx3igr",
+  "objective": "Analyze and execute Polymarket trading strategies",
+  "strategy": "analysis",
+  "status": "initialized",
+  "agents": 4,
+  "agentPlan": [
+    {
+      "role": "Analyst Lead",
+      "type": "analyst",
+      "count": 1,
+      "purpose": "Analysis coordination"
+    },
+    {
+      "role": "Code Analyst",
+      "type": "analyst",
+      "count": 2,
+      "purpose": "Code analysis"
+    },
+    {
+      "role": "Security Analyst",
+      "type": "reviewer",
+      "count": 1,
+      "purpose": "Security review"
+    }
+  ],
+  "startedAt": "2026-04-27T08:10:36.222Z",
+  "parallel": true
+}

@@ -1,0 +1,41 @@
+# Secrets & credentials
+.env
+.env.*
+
+# Local trade logs
+*.csv
+*.log
+
+# User config (stored outside repo at ~/.polymarket_bot/)
+~/.polymarket_bot/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.rvf
+*.rvf.lock
