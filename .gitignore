@@ -39,3 +39,21 @@ Thumbs.db
 *.db
 *.rvf
 *.rvf.lock
+
+# Claude internal files
+.claude/
+.claude-flow/
+.swarm/
+.mcp.json
+CLAUDE.md
+
+# Test/debug scripts
+balance_test.py
+check_*.py
+find_proxy.py
+get_creds_v2.py
+order_test.py
+test_*.py
+set_allowance.py
+research_agent.py
+research_report.md
