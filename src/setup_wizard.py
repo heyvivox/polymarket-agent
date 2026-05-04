@@ -26,7 +26,7 @@ def _show_polymarket_instructions() -> None:
         "  4. Go to [bold]Settings → API Keys[/bold]\n\n"
         "  5. Click [bold]\"Create API Key\"[/bold]\n\n"
         "  6. Copy the key that looks like:\n"
-        "     [dim]sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX[/dim]\n\n"
+        "     [dim]xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx[/dim]\n\n"
         "  7. Also copy your [bold]API Secret[/bold] (shown only once!)\n"
         "     and your [bold]Passphrase[/bold]\n\n"
         "  Paste your API Key below ↓",
@@ -70,17 +70,10 @@ def _show_binance_instructions() -> None:
 # ── Validators ────────────────────────────────────────────────────────────────
 
 def _validate_anthropic_key(key: str) -> tuple[bool, str]:
-    try:
-        import anthropic
-        client = anthropic.Anthropic(api_key=key)
-        client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=10,
-            messages=[{"role": "user", "content": "hi"}],
-        )
+    key = key.strip()
+    if key.startswith("sk-ant-") and len(key) > 20:
         return True, ""
-    except Exception as exc:
-        return False, str(exc)
+    return False, "Anthropic keys start with 'sk-ant-' — check you copied the full key"
 
 
 def _validate_binance_key(api_key: str, api_secret: str) -> tuple[bool, str]:
@@ -100,17 +93,10 @@ def _validate_binance_key(api_key: str, api_secret: str) -> tuple[bool, str]:
 
 
 def _validate_polymarket_key(key: str) -> tuple[bool, str]:
-    try:
-        resp = requests.get(
-            "https://clob.polymarket.com/auth/api-key",
-            headers={"Authorization": f"Bearer {key}"},
-            timeout=10,
-        )
-        if resp.status_code == 200:
-            return True, ""
-        return False, f"HTTP {resp.status_code}: {resp.text[:200]}"
-    except Exception as exc:
-        return False, str(exc)
+    key = key.strip()
+    if len(key) >= 10:
+        return True, ""
+    return False, "Key appears too short — make sure you copied the full key"
 
 
 # ── Generic prompt-with-validation helper ─────────────────────────────────────
